@@ -87,7 +87,7 @@ export const AddressSearch: React.FC<AddressSearchProps> = ({
         onKeyDown={handleKeyDown}
         onFocus={() => query.length >= 2 && setShowSuggestions(true)}
         placeholder={placeholder}
-        className="w-full px-4 py-3 text-right border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        className="w-full px-3 sm:px-4 py-3 text-right border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base min-h-[44px]"
         dir="rtl"
       />
 
@@ -100,19 +100,19 @@ export const AddressSearch: React.FC<AddressSearchProps> = ({
       {showSuggestions && data?.addresses && data.addresses.length > 0 && (
         <div
           ref={suggestionsRef}
-          className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto"
+          className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-48 sm:max-h-60 overflow-y-auto"
         >
           {data.addresses.map((address, index) => (
             <div
               key={`${address.lat}-${address.lon}-${index}`}
               onClick={() => handleAddressClick(address)}
-              className={`px-4 py-3 cursor-pointer text-right border-b border-gray-100 last:border-b-0 ${
+              className={`px-3 sm:px-4 py-3 cursor-pointer text-right border-b border-gray-100 last:border-b-0 min-h-[44px] touch-manipulation ${
                 index === selectedIndex
                   ? 'bg-blue-50 text-blue-700'
-                  : 'hover:bg-gray-50'
+                  : 'hover:bg-gray-50 active:bg-gray-100'
               }`}
             >
-              <div className="text-sm text-gray-800">
+              <div className="text-xs sm:text-sm text-gray-800 leading-tight">
                 {address.display_name}
               </div>
             </div>
@@ -122,7 +122,7 @@ export const AddressSearch: React.FC<AddressSearchProps> = ({
 
       {showSuggestions && data?.addresses && data.addresses.length === 0 && !loading && (
         <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg">
-          <div className="px-4 py-3 text-center text-gray-500 text-sm">
+          <div className="px-3 sm:px-4 py-3 text-center text-gray-500 text-xs sm:text-sm">
             לא נמצאו כתובות
           </div>
         </div>
@@ -130,7 +130,7 @@ export const AddressSearch: React.FC<AddressSearchProps> = ({
 
       {error && (
         <div className="absolute z-50 w-full mt-1 bg-white border border-red-300 rounded-lg shadow-lg">
-          <div className="px-4 py-3 text-center text-red-500 text-sm">
+          <div className="px-3 sm:px-4 py-3 text-center text-red-500 text-xs sm:text-sm">
             {error.message}
           </div>
         </div>

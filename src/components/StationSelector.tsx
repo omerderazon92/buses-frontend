@@ -31,10 +31,10 @@ export const StationSelector: React.FC<StationSelectorProps> = ({
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg shadow-md p-6">
+      <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
         <div className="flex items-center justify-center space-x-2">
           <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
-          <span className="text-gray-600">מחפש תחנות בסביבה...</span>
+          <span className="text-gray-600 text-sm sm:text-base">מחפש תחנות בסביבה...</span>
         </div>
       </div>
     );
@@ -42,8 +42,8 @@ export const StationSelector: React.FC<StationSelectorProps> = ({
 
   if (stations.length === 0) {
     return (
-      <div className="bg-white rounded-lg shadow-md p-6 text-center">
-        <div className="text-gray-500">
+      <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 text-center">
+        <div className="text-gray-500 text-sm sm:text-base">
           לא נמצאו תחנות בסביבה
         </div>
       </div>
@@ -52,13 +52,13 @@ export const StationSelector: React.FC<StationSelectorProps> = ({
 
   return (
     <div className="bg-white rounded-lg shadow-md">
-      <div className="p-4 border-b border-gray-200">
-        <h3 className="text-lg font-semibold text-gray-800 text-right">
+      <div className="p-3 sm:p-4 border-b border-gray-200">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-800 text-right">
           תחנות בסביבה ({stations.length})
         </h3>
       </div>
       
-      <div className="max-h-80 overflow-y-auto">
+      <div className="max-h-64 sm:max-h-80 overflow-y-auto">
         {stations.map((station) => {
           const busLines = getBusLines(station);
           const isSelected = selectedStationId === station.Makat;
@@ -67,22 +67,22 @@ export const StationSelector: React.FC<StationSelectorProps> = ({
             <div
               key={station.Makat}
               onClick={() => onStationSelect(station)}
-              className={`p-4 border-b border-gray-100 last:border-b-0 cursor-pointer transition-colors ${
+              className={`p-3 sm:p-4 border-b border-gray-100 last:border-b-0 cursor-pointer transition-colors min-h-[60px] touch-manipulation ${
                 isSelected 
                   ? 'bg-blue-50 border-l-4 border-l-blue-500' 
-                  : 'hover:bg-gray-50'
+                  : 'hover:bg-gray-50 active:bg-gray-100'
               }`}
             >
               <div className="flex justify-between items-start mb-2">
-                <div className="text-sm text-gray-500 font-medium">
+                <div className="text-xs sm:text-sm text-gray-500 font-medium whitespace-nowrap">
                   {formatDistance(station.Distance)}
                 </div>
-                <div className="text-right flex-1 mr-3">
-                  <div className="font-semibold text-gray-800 text-sm">
+                <div className="text-right flex-1 mr-2 sm:mr-3 min-w-0">
+                  <div className="font-semibold text-gray-800 text-sm sm:text-base leading-tight">
                     {station.Name}
                   </div>
                   {station.EnglishName && (
-                    <div className="text-xs text-gray-500 mt-1">
+                    <div className="text-xs text-gray-500 mt-1 leading-tight">
                       {station.EnglishName}
                     </div>
                   )}
@@ -91,11 +91,11 @@ export const StationSelector: React.FC<StationSelectorProps> = ({
               
               {busLines.length > 0 && (
                 <div className="flex flex-wrap gap-1 justify-end mt-2">
-                  <span className="text-xs text-gray-500 ml-2">קווים:</span>
+                  <span className="text-xs text-gray-500 ml-1 sm:ml-2">קווים:</span>
                   {busLines.map((line, index) => (
                     <span
                       key={index}
-                      className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full"
+                      className="inline-block bg-blue-100 text-blue-800 text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full whitespace-nowrap"
                     >
                       {line}
                     </span>

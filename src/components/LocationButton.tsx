@@ -84,6 +84,7 @@ export const LocationButton: React.FC<LocationButtonProps> = ({
         className={`
           w-full flex items-center justify-center px-4 py-3 text-white rounded-lg font-medium
           transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2
+          min-h-[44px] touch-manipulation active:scale-95
           ${getButtonStyle()}
           ${className}
         `}
@@ -92,13 +93,13 @@ export const LocationButton: React.FC<LocationButtonProps> = ({
       </button>
       
       {error && (
-        <div className="text-sm text-red-600 text-center bg-red-50 p-3 rounded-lg">
+        <div className="text-xs sm:text-sm text-red-600 text-center bg-red-50 p-2 sm:p-3 rounded-lg">
           {error.message}
         </div>
       )}
       
       {latitude && longitude && !loading && !error && (
-        <div className="text-sm text-green-600 text-center bg-green-50 p-2 rounded-lg">
+        <div className="text-xs sm:text-sm text-green-600 text-center bg-green-50 p-2 rounded-lg">
           מיקום נמצא בהצלחה
         </div>
       )}
